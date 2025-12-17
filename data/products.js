@@ -1,0 +1,96 @@
+
+export const product = {
+    id: "bag_001",
+    sku: "MS-BAG-001",
+    slug: "women-leather-bag-black",
+    name: "شنطة حريمي جلد طبيعي",
+    brand: "MODERNSHOP",
+    category: {
+        main: "شنط",
+        sub: "شنط حريمي",
+    },
+    description: "شنطة جلد طبيعي أنيقة، مناسبة للاستخدام اليومي والمناسبات.",
+    shortDescription: "شنطة جلد طبيعي أنيقة وعملية",
+    price: 1200,
+    oldPrice: 1500,
+    currency: "EGP",
+    discount: {
+        percentage: 20,
+        isActive: true,
+        expiresAt: "2025-03-01",
+    },
+    images: {
+        main: "https://images.unsplash.com/photo-1652427019217-3ded1a356f10?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8d29tZW4lMjBiYWdzfGVufDB8fDB8fHww",
+        gallery: [
+            "https://images.unsplash.com/photo-1559563458-527698bf5295?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8d29tZW4lMjBiYWdzfGVufDB8fDB8fHww",
+            "https://plus.unsplash.com/premium_photo-1670963025497-d6d582ea9319?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8d29tZW4lMjBiYWdzfGVufDB8fDB8fHww",
+            "https://images.unsplash.com/photo-1654707633360-1e2bbf09a406?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8d29tZW4lMjBiYWdzfGVufDB8fDB8fHww",
+        ],
+        thumbnail: "/images/bags/bag1/thumb.jpg",
+    },
+    variants: [
+        {
+            variantId: "bag_001_black",
+            color: "أسود",
+            hex: "#000000",
+            stock: 10,
+            images: ["https://images.unsplash.com/photo-1691480288782-142b953cf664?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fHdvbWVuJTIwYmFnc3xlbnwwfHwwfHx8MA%3D%3D"],
+        },
+        {
+            variantId: "bag_001_brown",
+            color: "بني",
+            hex: "#6b3e26",
+            stock: 5,
+            images: ["https://media.istockphoto.com/id/1180945600/photo/close-up-black-female-hand-holding-black-paper-bag-isolated-on-yellow-background-shopping-and.webp?a=1&b=1&s=612x612&w=0&k=20&c=ililqxy_7_m5NzMQqoNbYbCO9YgwhX_qFeLpqZ2d6Fs="],
+        },
+    ],
+    specifications: {
+        material: "جلد طبيعي",
+        lining: "قماش قطني",
+        closureType: "سوستة",
+        compartments: 3,
+        size: {
+            width: 30,
+            height: 25,
+            depth: 12,
+            unit: "cm",
+        },
+        weight: "900g",
+        madeIn: "مصر",
+    },
+    inventory: {
+        totalStock: 15,
+        availability: "in_stock",
+        lowStockThreshold: 3,
+    },
+    rating: {
+        average: 4.6,
+        totalReviews: 87,
+    },
+    reviews: [
+        {
+            reviewId: "rev_001",
+            userId: "user_015",
+            userName: "سارة أحمد",
+            rating: 5,
+            comment: "الشنطة خامتها ممتازة وشكلها تحفة",
+            createdAt: "2025-01-10",
+        },
+    ],
+    tags: ["جديد", "الأكثر مبيعًا", "شنط جلد"],
+    badges: ["Best Seller"],
+    isFeatured: true,
+    shipping: {
+        freeShipping: false,
+        shippingFee: 50,
+        estimatedDelivery: "2-4 أيام",
+    },
+    seo: {
+        metaTitle: "شنطة جلد حريمي | MODERNSHOP",
+        metaDescription: "اشتري شنطة جلد طبيعي أنيقة بأفضل سعر في مصر",
+        keywords: ["شنط", "شنط حريمي", "شنطة جلد"],
+    },
+    status: "active",
+    createdAt: "2025-01-01",
+    updatedAt: "2025-02-01",
+};
