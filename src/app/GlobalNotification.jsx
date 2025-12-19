@@ -40,8 +40,8 @@ export default function NotificationPortal() {
                 };
             default:
                 return {
-                    bg: "bg-blue-600",
-                    border: "border-gray-100",
+                    bg: "bg-red-300",
+                    border: "border-gray-200",
                     icon: "✓",
                     title: "تمت العملية"
                 };
@@ -76,7 +76,7 @@ export default function NotificationPortal() {
 
                         <button
                             onClick={() => dispatch(removeNotification())}
-                            className="p-2 hover:bg-gray-100 rounded-xl transition-colors text-gray-400"
+                            className="p-2 hover:bg-gray-200 rounded-xl transition-colors text-gray-400"
                         >
                             ✕
                         </button>

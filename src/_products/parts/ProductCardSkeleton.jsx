@@ -1,6 +1,6 @@
 export function ProductCardSkeleton() {
   return (
-    <div className="bg-white rounded-[2rem] overflow-hidden border border-gray-100 shadow-sm font-tajawal animate-pulse">
+    <div className="bg-white rounded-2xl overflow-hidden border border-gray-200 shadow-sm font-tajawal animate-pulse">
       <div className="aspect-[4/2] bg-gray-200" />
 
       <div className="p-5 space-y-3">

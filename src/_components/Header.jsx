@@ -5,12 +5,18 @@ import { ShoppingBag, Search, User, Menu, X, ChevronDown } from 'lucide-react';
 import globals from '../globals.js';
 import Link from 'next/link.js';
 import { useSession } from 'next-auth/react'
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchAllUsers } from '@/features/async/userSlice.js';
 
 const Header = () => {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const { brandName } = globals;
     const { data: session } = useSession()
+    const dispatch = useDispatch()
+    const users = useSelector(u => u.users.users)
+
+    const currentUser = users.find(u => u.email.trim() === session?.user?.email.trim())
 
     useEffect(() => {
         const handleScroll = () => {
@@ -20,11 +26,16 @@ const Header = () => {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
+    useEffect(() => {
+        dispatch(fetchAllUsers())
+    }, [dispatch]);
+
+
     const navLinks = [
-        { name: 'الرئيسية', href: '#' },
-        { name: 'المتجر', href: '#', hasDropdown: true },
-        { name: 'وصل حديثاً', href: '#' },
-        { name: 'العروض', href: '#' },
+        { name: 'الرئيسية', href: '/' },
+        { name: 'المتجر', href: '/', hasDropdown: true },
+        { name: 'وصل حديثاً', href: '/' },
+        { name: 'العروض', href: '/' },
     ];
 
     return (
@@ -32,20 +43,19 @@ const Header = () => {
             dir='rtl'
             className={`fixed top-0 w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white/80 backdrop-blur-md shadow-sm py-3' : 'bg-transparent py-5'}`}
         >
-            <div className="container mx-auto px-6 flex items-center justify-between">
+            <div className="px-6 flex items-center justify-between">
 
-                <div className="flex items-center gap-5">
-                    <div className="relative group cursor-pointer">
+                <div className="flex items-center sm:gap-5 gap-2">
+                    <Link href={'/cart'} className="relative group cursor-pointer">
                         <ShoppingBag className="w-6 h-6 text-gray-800" />
-                        <span className="absolute -top-2 -right-2 bg-black text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center">
-                            3
+                        <span className="absolute -top-2 -right-2 bg-red-400 text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center">
+                            {currentUser?.cart?.length || 0}
                         </span>
-                    </div>
-                    {/* <Link href={session ? '/account' : '/login'}> */}
-                    <Link href={'/login'}>
+                    </Link>
+                    <Link href={session ? '/account' : '/login'}>
                         <User className="w-6 h-6 text-gray-800 cursor-pointer hidden md:block" />
                     </Link>
-                    <Search className="w-6 h-6 text-gray-800 cursor-pointer" />
+                    {/* <Search className="w-6 h-6 text-gray-800 cursor-pointer" /> */}
                 </div>
 
                 <nav className="hidden md:flex items-center gap-8">
@@ -53,17 +63,17 @@ const Header = () => {
                         <a
                             key={link.name}
                             href={link.href}
-                            className="group flex items-center gap-1 text-gray-700 font-medium hover:text-black transition-colors"
+                            className="group flex items-center gap-1 text-gray-700 font-medium hover:text-red-300 transition-colors"
                         >
                             {link.name}
-                            {link.hasDropdown && <ChevronDown className="w-4 h-4 transition-transform group-hover:rotate-180" />}
+                            {/* {link.hasDropdown && <ChevronDown className="w-4 h-4 transition-transform group-hover:rotate-180" />} */}
                         </a>
                     ))}
                 </nav>
 
                 <div className="flex items-center gap-4">
                     <Link href='/'>
-                        <h1 className="text-2xl font-bold tracking-tighter text-black">{brandName}</h1>
+                        <h1 className="text-2xl font-bold tracking-tighter text-red-400">{brandName}</h1>
                     </Link>
                     <button
                         className="md:hidden"
@@ -72,6 +82,7 @@ const Header = () => {
                         {isMobileMenuOpen ? <X /> : <Menu />}
                     </button>
                 </div>
+
             </div>
 
             <AnimatePresence>
@@ -95,7 +106,7 @@ const Header = () => {
                     </motion.div>
                 )}
             </AnimatePresence>
-        </header >
+        </header>
     );
 };
 

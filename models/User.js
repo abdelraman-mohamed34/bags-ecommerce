@@ -63,8 +63,7 @@ const userSchema = new mongoose.Schema(
         cart: [
             {
                 productId: {
-                    type: mongoose.Schema.Types.ObjectId,
-                    ref: "Product",
+                    type: String,
                 },
                 variantId: String,
                 quantity: {

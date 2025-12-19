@@ -4,6 +4,7 @@ import { signIn } from "next-auth/react";
 import { motion } from "framer-motion";
 import { useDispatch } from "react-redux";
 import { addNotification } from "@/features/normal/notificationSlice.js";
+import Link from "next/link";
 
 export default function LoginPage() {
     const [formData, setFormData] = useState({ email: "", password: "" });
@@ -13,7 +14,6 @@ export default function LoginPage() {
     const handleLogin = async (e) => {
         e.preventDefault();
         setLoading(true);
-
         try {
             const result = await signIn("credentials", {
                 email: formData.email,
@@ -22,94 +22,111 @@ export default function LoginPage() {
             });
 
             if (result?.error) {
-                dispatch(addNotification({
-                    message: "البريد الإلكتروني أو كلمة السر غير صحيحة",
-                    type: "error"
-                }));
+                dispatch(addNotification({ message: "البيانات غير صحيحة", type: "error" }));
             } else {
-                dispatch(addNotification({
-                    message: "تم تسجيل الدخول بنجاح، جارٍ تحويلك...",
-                    type: "success"
-                }));
-                setTimeout(() => {
-                    window.location.href = "/";
-                }, 1500);
+                dispatch(addNotification({ message: "تم تسجيل الدخول", type: "success" }));
+                setTimeout(() => { window.location.href = "/"; }, 1500);
             }
         } catch (err) {
-            dispatch(addNotification({
-                message: "حدث خطأ ما، يرجى المحاولة لاحقاً",
-                type: "warning"
-            }));
+            dispatch(addNotification({ message: "حدث خطأ ما", type: "warning" }));
         } finally {
             setLoading(false);
         }
     };
-    console.log(formData)
+
     return (
-        <div className="flex items-center justify-center bg-gray-50/50 font-tajawal p-6" dir="rtl">
+        <div className="relative min-h-screen w-full flex items-center justify-center overflow-hidden font-tajawal p-4 md:p-10" dir="rtl">
+
+            <div className="absolute inset-0 z-0">
+                <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-blue-50 blur-[120px] opacity-60" />
+                <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] rounded-full bg-gray-200 blur-[120px] opacity-50" />
+            </div>
+
             <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="bg-white p-8 md:p-12 rounded-[3rem] shadow-2xl shadow-gray-200 border border-gray-100 max-w-lg w-full"
+                initial={{ opacity: 0, scale: 0.98 }}
+                animate={{ opacity: 1, scale: 1 }}
+                className="relative z-10 flex w-full max-w-[1100px] bg-white shadow-[0_40px_100px_-20px_rgba(0,0,0,0.05)] overflow-hidden rounded-xl border border-gray-100"
             >
-                <div className="text-center mb-10">
-                    <h1 className="text-3xl font-black text-gray-900 mb-2">تسجيل الدخول</h1>
-                    <p className="text-gray-400 font-medium">مرحباً بك مجدداً في متجرنا</p>
+                <div className="hidden lg:block w-1/2 relative bg-gray-900 overflow-hidden">
+                    <img
+                        src="https://images.unsplash.com/photo-1549298916-b41d501d3772?q=80&w=2012&auto=format&fit=crop"
+                        alt="Style"
+                        className="absolute inset-0 w-full h-full object-cover opacity-80 transition-transform duration-[10s] hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex flex-col justify-end p-12">
+                        <h2 className="text-white text-4xl font-light tracking-wide leading-tight">استكشف <br /><span className="font-bold">مجموعتنا الجديدة</span></h2>
+                        <p className="text-gray-300 mt-4 text-sm tracking-[0.2em] uppercase">Autumn / Winter 2025</p>
+                    </div>
                 </div>
 
-                <form onSubmit={handleLogin} className="space-y-4">
-                    <div className="space-y-4">
-                        <input
-                            type="email"
-                            placeholder="البريد الإلكتروني"
-                            className="w-full px-6 py-4 rounded-2xl bg-gray-50 border-2 border-transparent focus:border-blue-500 focus:bg-white outline-none transition-all"
-                            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                            required
-                        />
-                        <input
-                            type="password"
-                            placeholder="كلمة السر"
-                            className="w-full px-6 py-4 rounded-2xl bg-gray-50 border-2 border-transparent focus:border-blue-500 focus:bg-white outline-none transition-all"
-                            onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-                            required
-                        />
+                <div className="w-full lg:w-1/2 p-8 md:p-16 2xl:p-24 flex flex-col justify-center bg-white">
+                    <div className="mb-12">
+                        <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-[10px] 2xl:text-xs uppercase tracking-[0.4em] text-gray-400 mb-4">المتجر </motion.p>
+                        <h1 className="text-3xl 2xl:text-5xl font-bold tracking-tight text-gray-900">تسجيل الدخول</h1>
                     </div>
 
-                    <motion.button
-                        whileHover={{ scale: 1.01 }}
-                        whileTap={{ scale: 0.98 }}
-                        disabled={loading}
-                        type="submit"
-                        className={`w-full py-4 rounded-2xl font-black shadow-lg transition-all flex justify-center items-center ${loading ? "bg-gray-400 cursor-not-allowed" : "bg-gray-900 text-white hover:bg-blue-600"
-                            }`}
+                    <form onSubmit={handleLogin} className="space-y-8">
+                        <div className="space-y-6">
+                            <div className="space-y-2">
+                                <label className="text-[10px] 2xl:text-[12px] uppercase tracking-widest text-gray-400 mr-2">البريد الإلكتروني</label>
+                                <input
+                                    type="email"
+                                    placeholder="name@example.com"
+                                    className="w-full px-6 py-5 2xl:py-6 bg-gray-50/50 border border-gray-100 focus:border-black focus:bg-white outline-none transition-all text-sm 2xl:text-base rounded-sm"
+                                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                                    required
+                                />
+                            </div>
+                            <div className="space-y-2">
+                                <label className="text-[10px] 2xl:text-[12px] uppercase tracking-widest text-gray-400 mr-2">كلمة السر</label>
+                                <input
+                                    type="password"
+                                    placeholder="••••••••"
+                                    className="w-full px-6 py-5 2xl:py-6 bg-gray-50/50 border border-gray-100 focus:border-black focus:bg-white outline-none transition-all text-sm 2xl:text-base rounded-sm"
+                                    onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+                                    required
+                                />
+                            </div>
+                        </div>
+
+                        <div className="flex justify-start">
+                            <span className="text-[10px] 2xl:text-xs uppercase tracking-widest text-gray-400 hover:text-black cursor-pointer transition-colors">نسيت كلمة السر؟</span>
+                        </div>
+
+                        <motion.button
+                            whileTap={{ scale: 0.98 }}
+                            disabled={loading}
+                            type="submit"
+                            className={`w-full py-5 2xl:py-7 text-[10px] 2xl:text-xs font-bold uppercase tracking-[0.3em] transition-all flex justify-center items-center rounded-sm ${loading
+                                ? "bg-gray-100 text-gray-400"
+                                : "bg-[#1a1a1a] text-white hover:bg-red-300 shadow-xl shadow-gray-200"
+                                }`}
+                        >
+                            {loading ? <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" /> : "دخول آمن"}
+                        </motion.button>
+                    </form>
+
+                    <div className="relative my-12">
+                        <div className="absolute inset-0 flex items-center"><span className="w-full border-t border-gray-100"></span></div>
+                        <div className="relative flex justify-center text-[10px] 2xl:text-xs uppercase tracking-widest"><span className="bg-white px-6 text-gray-300">أو</span></div>
+                    </div>
+
+                    <button
+                        onClick={() => signIn('google', { callbackUrl: '/' })}
+                        className="w-full flex items-center justify-center gap-4 bg-white border border-gray-100 py-5 2xl:py-6 text-[10px] 2xl:text-xs font-bold uppercase tracking-[0.2em] text-gray-700 hover:bg-gray-50 transition-all rounded-sm shadow-sm"
                     >
-                        {loading ? (
-                            <div className="w-6 h-6 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                        ) : "دخول"}
-                    </motion.button>
-                </form>
+                        <img src="https://www.svgrepo.com/show/475656/google-color.svg" className="w-5 h-5" alt="google" />
+                        المتابعة عبر جوجل
+                    </button>
 
-                <div className="relative my-8">
-                    <div className="absolute inset-0 flex items-center">
-                        <span className="w-full border-t border-gray-100"></span>
+                    <div className="mt-12 text-center">
+                        <p className="text-[11px] 2xl:text-[13px] text-gray-400 uppercase tracking-[0.2em]">
+                            ليس لديك حساب؟{" "}
+                            <Link href="/register" className="text-black font-bold hover:underline underline-offset-8 decoration-1 italic">
+                                سجل الآن
+                            </Link>
+                        </p>
                     </div>
-                    <div className="relative flex justify-center text-xs uppercase">
-                        <span className="bg-white px-4 text-gray-400 font-bold">أو بواسطة</span>
-                    </div>
-                </div>
-
-                <button
-                    onClick={() => signIn('google', { callbackUrl: '/' })}
-                    className="w-full flex items-center justify-center gap-4 bg-white border-2 border-gray-100 py-4 rounded-2xl font-black text-gray-700 hover:bg-gray-50 transition-all shadow-sm"
-                >
-                    <img src="https://www.svgrepo.com/show/475656/google-color.svg" className="w-6 h-6" alt="google" />
-                    متابعة باستخدام جوجل
-                </button>
-
-                <div className="mt-8 text-center">
-                    <p className="text-sm text-gray-500 font-medium">
-                        ليس لديك حساب؟ <span className="text-blue-600 cursor-pointer hover:underline">أنشئ حساباً جديداً</span>
-                    </p>
                 </div>
             </motion.div>
         </div>

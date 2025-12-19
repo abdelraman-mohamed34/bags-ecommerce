@@ -4,7 +4,7 @@ import axios from 'axios'
 const initialState = {
     products: [],
     loading: false,
-    error: '',
+    error: null,
 }
 
 export const fetchAllProducts = createAsyncThunk(
@@ -14,19 +14,19 @@ export const fetchAllProducts = createAsyncThunk(
             const response = await axios.get("/api/products");
             return response.data;
         } catch (error) {
-            return thunkAPI.rejectWithValue(error.response.data);
+            return thunkAPI.rejectWithValue(error.response?.data?.message || "حدث خطأ أثناء جلب المنتجات");
         }
     }
 );
 
 export const postComment = createAsyncThunk(
     "products/postComment",
-    async (commentData, thunkAPI) => {
+    async ({ text, productId, rating }, thunkAPI) => {
         try {
             const response = await axios.post(
-                "/api/products/addComment",
-                commentData,
-                { withCredentials: true, }
+                `/api/products/comments`,
+                { text, rating, productId },
+                { withCredentials: true }
             );
             return response.data;
         } catch (error) {
@@ -35,14 +35,68 @@ export const postComment = createAsyncThunk(
         }
     }
 );
+export const handleDeleteReview = createAsyncThunk(
+    "products/deleteReview",
+    async ({ productId, reviewId, reviewerId }, thunkAPI) => {
+        try {
+            const response = await axios.delete(
+                `/api/products/comments`,
+                {
+                    data: { productId, reviewId, reviewerId },
+                    withCredentials: true
+                }
+            );
+            return response.data;
+        } catch (error) {
+            const message = error.response?.data?.error || "حدث خطأ أثناء حذف التعليق";
+            return thunkAPI.rejectWithValue(message);
+        }
+    }
+);
+
+export const addNewProduct = createAsyncThunk(
+    "products/addNewProduct",
+    async (formData, thunkAPI) => {
+        try {
+            const response = await axios.post(
+                `/api/products`,
+                formData,
+                { withCredentials: true }
+            );
+            return response.data;
+        } catch (error) {
+            const message = error.response?.data?.message || "حدث خطأ أثناء الرفع ";
+            return thunkAPI.rejectWithValue(message);
+        }
+    }
+);
+
+export const deleteProduct = createAsyncThunk(
+    "products/deleteProduct",
+    async (productId, thunkAPI) => {
+        try {
+            const response = await axios.delete(
+                `/api/products`,
+                {
+                    data: { id: productId },
+                    withCredentials: true
+                });
+            return productId;
+        } catch (error) {
+            const message = error.response?.data?.message || "حدث خطأ أثناء حذف المنتج";
+            return thunkAPI.rejectWithValue(message);
+        }
+    }
+);
 
 
 export const productsSlice = createSlice({
-    name: 'counter',
+    name: 'products',
     initialState,
     reducers: {},
     extraReducers: (builder) => {
         builder
+            // fetchAllProducts
             .addCase(fetchAllProducts.pending, (state) => {
                 state.loading = true;
                 state.error = null;
@@ -65,6 +119,7 @@ export const productsSlice = createSlice({
                 const { productId, comment } = action.payload;
                 const product = state.products.find(p => p._id === productId);
                 if (product) {
+                    if (!product.comments) product.comments = [];
                     product.comments.push(comment);
                 }
             })
@@ -73,9 +128,6 @@ export const productsSlice = createSlice({
                 state.error = action.payload;
             });
     }
-
 })
 
-export const { } = productsSlice.actions
-
-export default productsSlice.reducer
+export default productsSlice.reducer;

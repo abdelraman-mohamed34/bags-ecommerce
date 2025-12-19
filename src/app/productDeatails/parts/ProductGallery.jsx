@@ -98,8 +98,8 @@ export default function ProductGallery({ product, selectedVariant }) {
                         onClick={() => setActiveImage(img)}
                         // Dynamic borders and scaling for the active thumbnail
                         className={`relative flex-shrink-0 w-24 h-24 rounded-3xl overflow-hidden border-2 transition-all duration-500 snap-start ${activeImage === img
-                            ? "border-blue-600 ring-4 ring-blue-50 scale-105 shadow-lg"
-                            : "border-gray-100 opacity-50 hover:opacity-100"
+                            ? "border-red-300 ring-4 ring-blue-50 scale-105 shadow-lg"
+                            : "border-gray-200 opacity-50 hover:opacity-100"
                             }`}
                     >
                         <img src={img} className="w-full h-full object-cover" alt={`view-${idx}`} />
@@ -108,7 +108,7 @@ export default function ProductGallery({ product, selectedVariant }) {
                         {activeImage === img && (
                             <motion.div
                                 layoutId="activeThumb"
-                                className="absolute inset-0 bg-blue-600/5 z-10"
+                                className="absolute inset-0 bg-red-300/5 z-10"
                                 transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                             />
                         )}

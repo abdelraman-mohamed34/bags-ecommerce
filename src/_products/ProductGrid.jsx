@@ -19,20 +19,10 @@ export default function ProductGrid() {
     }, [dispatch]);
 
     return (
-        <section className="py-16 px-4 max-w-7xl mx-auto font-tajawal text-right" dir="rtl">
-
-            {/* --- Section Header --- */}
-            <header className="mb-12 flex flex-col items-start border-r-4 border-blue-600 pr-6">
-                <h2 className="text-3xl md:text-4xl font-black text-gray-900 leading-tight">
-                    Shop Our Collection
-                </h2>
-                <p className="text-gray-500 mt-2 text-lg">
-                    The finest bags crafted from genuine leather.
-                </p>
-            </header>
+        <section className="py-16 sm:pt-16 pt-10 sm:px-4 max-w-7xl mx-auto font-tajawal text-right" dir="rtl">
 
             {/* --- Products Grid Layout --- */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-6 gap-y-10">
+            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 sm:gap-x-6 sm:gap-y-10 gap-2">
                 <AnimatePresence mode="wait">
 
                     {/* Phase 1: Loading State - Displaying Skeletons */}

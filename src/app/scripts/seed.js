@@ -1,13 +1,13 @@
 import connectDB from "../../lib/mongodb.js";
-import { user } from "../../../data/user.js";
-import User from "../../../models/User.js";
+import Product from "../../../models/Product.js";
+import { products } from "../../../data/products.js";
 
 async function seed() {
     try {
         await connectDB();
 
-        await User.deleteMany({});
-        await User.insertMany(user);
+        await Product.deleteMany({});
+        await Product.insertMany(products);
 
         console.log("Seeding finished successfully");
         process.exit(0);

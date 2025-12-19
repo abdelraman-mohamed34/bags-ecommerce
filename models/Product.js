@@ -26,7 +26,6 @@ const SpecificationSchema = new mongoose.Schema({
 });
 
 const ReviewSchema = new mongoose.Schema({
-    reviewId: String,
     userId: String,
     userName: String,
     rating: Number,

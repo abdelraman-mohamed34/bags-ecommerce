@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import Header from "@/_components/Header";
 import AuthProvider from "@/AuthProvider";
 import NotificationPortal from "./GlobalNotification";
+import Footer from "@/_components/Footer";
 
 export default function Wrapper({ children }) {
     const pathname = usePathname();
@@ -18,6 +19,7 @@ export default function Wrapper({ children }) {
                     <Header />
                     {children}
                     <NotificationPortal />
+                    <Footer />
                 </div>
             </AuthProvider>
         </Provider>
