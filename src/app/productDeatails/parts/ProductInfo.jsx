@@ -5,7 +5,7 @@ import { addNotification } from "@/features/normal/notificationSlice";
 import { motion, AnimatePresence } from "framer-motion";
 import { useSession } from "next-auth/react";
 import { useSearchParams } from "next/navigation";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { useDispatch } from "react-redux";
 
 export default function ProductInfo({

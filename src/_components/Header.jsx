@@ -72,7 +72,7 @@ const Header = () => {
                 </nav>
 
                 <div className="flex items-center gap-4">
-                    <Link href='/'>
+                    <Link href='/' className='flex items-center'>
                         <h1 className="text-2xl font-bold tracking-tighter text-red-400">{brandName}</h1>
                     </Link>
                     <button
