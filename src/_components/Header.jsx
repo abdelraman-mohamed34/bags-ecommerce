@@ -53,7 +53,7 @@ const Header = () => {
                         </span>
                     </Link>
                     <Link href={session ? '/account' : '/login'}>
-                        <User className="w-6 h-6 text-gray-800 cursor-pointer hidden md:block" />
+                        <User className="w-6 h-6 text-gray-800 cursor-pointer" />
                     </Link>
                     {/* <Search className="w-6 h-6 text-gray-800 cursor-pointer" /> */}
                 </div>
@@ -73,7 +73,7 @@ const Header = () => {
 
                 <div className="flex items-center gap-4">
                     <Link href='/' className='flex items-center'>
-                        <h1 className="text-2xl font-bold tracking-tighter text-red-400">{brandName}</h1>
+                        <h1 className="text-2xl font-bold tracking-tighter text-red-400 sm:mt-0 mt-1">{brandName}</h1>
                     </Link>
                     <button
                         className="md:hidden"
