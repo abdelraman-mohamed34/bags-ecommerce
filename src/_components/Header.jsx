@@ -44,14 +44,15 @@ const Header = () => {
             className={`fixed top-0 w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white/80 backdrop-blur-md shadow-sm py-3' : 'bg-transparent py-5'}`}
         >
             <div className="px-6 flex items-center justify-between">
-
                 <div className="flex flex-1 items-center justify-start sm:gap-5 gap-2">
-                    <Link href={'/cart'} className="relative group cursor-pointer">
-                        <ShoppingBag className="w-6 h-6 text-gray-800" />
-                        <span className="absolute -top-2 -right-2 bg-red-400 text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center">
-                            {currentUser?.cart?.length || 0}
-                        </span>
-                    </Link>
+                    {session?.user?.role === 'user' && (
+                        <Link href={'/cart'} className="relative group cursor-pointer">
+                            <ShoppingBag className="w-6 h-6 text-gray-800" />
+                            <span className="absolute -top-2 -right-2 bg-red-400 text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center">
+                                {currentUser?.cart?.length || 0}
+                            </span>
+                        </Link>
+                    )}
                     <Link href={session ? '/account' : '/login'}>
                         <User className="w-6 h-6 text-gray-800 cursor-pointer " />
                     </Link>

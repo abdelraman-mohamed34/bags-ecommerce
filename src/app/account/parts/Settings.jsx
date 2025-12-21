@@ -20,12 +20,20 @@ export default function Settings() {
             <section className="space-y-8">
                 {
                     session?.user?.role === 'admin' && (
-                        <div className="border-b border-gray-50 pb-4">
-                            <h3 className="text-[11px] uppercase tracking-[0.3em] font-bold text-black mb-3">إدارة المنتجات</h3>
-                            <Link href={'/upload-product'} className="px-8 py-3 bg-black text-white text-[10px] uppercase tracking-widest font-bold hover:bg-gray-800 transition-all">
-                                إضافة منتج جديد
-                            </Link>
-                        </div>
+                        <>
+                            <div className="border-b border-gray-50 pb-4">
+                                <h3 className="text-[11px] uppercase tracking-[0.3em] font-bold text-black mb-3">إدارة المنتجات</h3>
+                                <Link href={'/upload-product'} className="px-8 py-3 bg-black text-white text-[10px] uppercase tracking-widest font-bold hover:bg-gray-800 transition-all">
+                                    إضافة منتج جديد
+                                </Link>
+                            </div>
+                            <div className="border-b border-gray-50 pb-4">
+                                <h3 className="text-[11px] uppercase tracking-[0.3em] font-bold text-black mb-3">إدارة المستخدمين</h3>
+                                <Link href={'/upload-user'} className="px-8 py-3 bg-black text-white text-[10px] uppercase tracking-widest font-bold hover:bg-gray-800 transition-all">
+                                    إضافة مستخدم جديد
+                                </Link>
+                            </div>
+                        </>
                     )
                 }
                 <div className="border-b border-gray-50 pb-4 hidden">

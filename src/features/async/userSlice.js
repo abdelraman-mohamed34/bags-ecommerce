@@ -23,6 +23,32 @@ export const fetchAllUsers = createAsyncThunk(
     }
 );
 
+export const addNewUser = createAsyncThunk(
+    "users/addNewUser",
+    async (formdata, thunkAPI) => {
+        try {
+            const response = await axios.post(
+                `/api/users`,
+                formdata,
+                { withCredentials: true },
+                {
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                }
+            );
+            return response.data;
+        } catch (error) {
+            const message =
+                error.response?.data?.error ||
+                error.response?.data?.message ||
+                "فشل رفع بيانات المستخدم";
+
+            return thunkAPI.rejectWithValue(message);
+        }
+    }
+);
+
 export const editUser = createAsyncThunk(
     "users/editUser",
     async (uploaded, thunkAPI) => {
@@ -114,6 +140,16 @@ export const userSlice = createSlice({
                 state.products = action.payload.cart || state.products;
             })
             .addCase(uploadProductToCart.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.payload;
+            })
+            .addCase(addNewUser.pending, (state, action) => {
+                state.loading = true;
+            })
+            .addCase(addNewUser.fulfilled, (state, action) => {
+                state.loading = false;
+            })
+            .addCase(addNewUser.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.payload;
             })

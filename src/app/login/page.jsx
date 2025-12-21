@@ -106,7 +106,7 @@ export default function LoginPage() {
                         </motion.button>
                     </form>
 
-                    <div className="relative my-12">
+                    <div className="relative my-12 hidden">
                         <div className="absolute inset-0 flex items-center"><span className="w-full border-t border-gray-100"></span></div>
                         <div className="relative flex justify-center text-[10px] 2xl:text-xs uppercase tracking-widest"><span className="bg-white px-6 text-gray-300">أو</span></div>
                     </div>
@@ -118,7 +118,7 @@ export default function LoginPage() {
                         animate={{ opacity: 1, y: 0 }}
 
                         onClick={() => signIn('google', { callbackUrl: '/' })}
-                        className="w-full flex items-center justify-center gap-4 bg-white border border-gray-100 py-5 2xl:py-6 text-[10px] 2xl:text-xs font-bold uppercase tracking-[0.2em] text-gray-700 transition-all rounded-sm shadow-sm"
+                        className="hidden w-full flex items-center justify-center gap-4 bg-white border border-gray-100 py-5 2xl:py-6 text-[10px] 2xl:text-xs font-bold uppercase tracking-[0.2em] text-gray-700 transition-all rounded-sm shadow-sm"
                     >
                         <img
                             src="https://www.svgrepo.com/show/475656/google-color.svg"
@@ -127,7 +127,7 @@ export default function LoginPage() {
                         />
                         المتابعة عبر جوجل
                     </motion.button>
-                    <div className="mt-12 text-center">
+                    <div className="mt-12 text-center hidden">
                         <p className="text-[11px] 2xl:text-[13px] text-gray-400 uppercase tracking-[0.2em]">
                             ليس لديك حساب؟{" "}
                             <Link href="/register" className="text-black font-bold hover:underline underline-offset-8 decoration-1 italic">
