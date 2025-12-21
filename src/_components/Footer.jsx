@@ -49,7 +49,7 @@ export default function Footer() {
                     <div className="space-y-8">
                         <h4 className="text-[11px] md:text-xs uppercase tracking-[0.4em] font-bold text-red-300">النشرة البريدية</h4>
                         <p className="text-gray-400 text-xs md:text-sm leading-relaxed">اشترك ليصلك جديد مجموعاتنا الحصرية وعروضنا الخاصة.</p>
-                        <div className="relative group pt-2">
+                        <div className="relative group pt-2 hidden">
                             <input
                                 type="email"
                                 placeholder="البريد الإلكتروني"

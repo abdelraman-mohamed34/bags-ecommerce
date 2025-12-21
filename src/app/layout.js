@@ -20,7 +20,7 @@ const tajawal = Tajawal({
 });
 
 export const metadata = {
-  title: "Modern Shop",
+  title: "R&M",
   description: "مطور من قبل عبدالرحمن طالب في كلية الهندسة الزراعية جامعة الأزهر بالقاهرة - +201021079171",
 };
 

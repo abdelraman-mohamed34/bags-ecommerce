@@ -45,7 +45,7 @@ const Header = () => {
         >
             <div className="px-6 flex items-center justify-between">
 
-                <div className="flex items-center sm:gap-5 gap-2">
+                <div className="flex flex-1 items-center justify-start sm:gap-5 gap-2">
                     <Link href={'/cart'} className="relative group cursor-pointer">
                         <ShoppingBag className="w-6 h-6 text-gray-800" />
                         <span className="absolute -top-2 -right-2 bg-red-400 text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center">
@@ -53,12 +53,11 @@ const Header = () => {
                         </span>
                     </Link>
                     <Link href={session ? '/account' : '/login'}>
-                        <User className="w-6 h-6 text-gray-800 cursor-pointer" />
+                        <User className="w-6 h-6 text-gray-800 cursor-pointer " />
                     </Link>
-                    {/* <Search className="w-6 h-6 text-gray-800 cursor-pointer" /> */}
                 </div>
 
-                <nav className="hidden md:flex items-center gap-8">
+                <nav className="hidden flex-2 md:flex justify-center items-center gap-8">
                     {navLinks.map((link) => (
                         <a
                             key={link.name}
@@ -71,7 +70,7 @@ const Header = () => {
                     ))}
                 </nav>
 
-                <div className="flex items-center gap-4">
+                <div className="flex flex-1 items-center justify-end gap-4">
                     <Link href='/' className='flex items-center'>
                         <h1 className="text-2xl font-bold tracking-tighter text-red-400 sm:mt-0 mt-1">{brandName}</h1>
                     </Link>

@@ -54,12 +54,12 @@ export default function AddReviewSection({ setIsOpen }) {
     };
 
     return (
-        <div className="mt-6 font-tajawal">
+        <div className="mt-6 font-tajawal flex justify-center w-full">
             <motion.div
                 initial={{ opacity: 0, y: 20, scale: 0.95 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.95 }}
-                className="bg-white shadow-gray-200/50 max-w-2xl p-6 rounded-2xl"
+                className="bg-white shadow-gray-200/50 max-w-2xl p-6 rounded-2xl w-full"
             >
                 {/* عنوان + تقييم النجوم */}
                 <div className="flex justify-between items-center mb-6">

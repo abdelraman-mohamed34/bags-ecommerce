@@ -13,7 +13,6 @@ export default function AccountPage() {
     const router = useRouter();
     const dispatch = useDispatch();
 
-    // جلب المستخدمين من الـ Redux
     const users = useSelector(s => s.users.users);
     const currentUser = users?.find(u => u._id === session?.user?.id);
 
@@ -59,8 +58,7 @@ export default function AccountPage() {
 
                         <button
                             onClick={() => {
-                                signOut();
-                                router.push('/');
+                                signOut({ callbackUrl: '/' });
                             }}
                             className="w-full text-right px-6 py-4 text-sm text-red-400 hover:text-red-600 transition-colors mt-8"
                         >

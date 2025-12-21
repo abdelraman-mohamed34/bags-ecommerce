@@ -59,7 +59,7 @@ export default function ProductPage() {
         <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="min-h-screen bg-white font-tajawal sm:pt-24 pt-10 md:pt-32 sm:pb-20"
+            className="min-h-screen bg-[#fcfcfc] font-tajawal sm:pt-24 pt-10 md:pt-32 sm:pb-20"
             dir="rtl"
         >
             <div className="max-w-[1600px] mx-auto sm:px-4 px-2 md:px-10 lg:px-16">

@@ -1,3 +1,3 @@
 export default {
-    brandName: 'MODERNSHOP',
+    brandName: 'R&M',
 };

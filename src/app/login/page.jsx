@@ -111,14 +111,22 @@ export default function LoginPage() {
                         <div className="relative flex justify-center text-[10px] 2xl:text-xs uppercase tracking-widest"><span className="bg-white px-6 text-gray-300">أو</span></div>
                     </div>
 
-                    <button
-                        onClick={() => signIn('google', { callbackUrl: '/' })}
-                        className="w-full flex items-center justify-center gap-4 bg-white border border-gray-100 py-5 2xl:py-6 text-[10px] 2xl:text-xs font-bold uppercase tracking-[0.2em] text-gray-700 hover:bg-gray-50 transition-all rounded-sm shadow-sm"
-                    >
-                        <img src="https://www.svgrepo.com/show/475656/google-color.svg" className="w-5 h-5" alt="google" />
-                        المتابعة عبر جوجل
-                    </button>
+                    <motion.button
+                        whileHover={{ scale: 1.01, backgroundColor: "#f9fafb" }}
+                        whileTap={{ scale: 0.98 }}
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
 
+                        onClick={() => signIn('google', { callbackUrl: '/' })}
+                        className="w-full flex items-center justify-center gap-4 bg-white border border-gray-100 py-5 2xl:py-6 text-[10px] 2xl:text-xs font-bold uppercase tracking-[0.2em] text-gray-700 transition-all rounded-sm shadow-sm"
+                    >
+                        <img
+                            src="https://www.svgrepo.com/show/475656/google-color.svg"
+                            className="w-5 h-5"
+                            alt="google"
+                        />
+                        المتابعة عبر جوجل
+                    </motion.button>
                     <div className="mt-12 text-center">
                         <p className="text-[11px] 2xl:text-[13px] text-gray-400 uppercase tracking-[0.2em]">
                             ليس لديك حساب؟{" "}
