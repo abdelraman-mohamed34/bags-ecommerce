@@ -3,7 +3,7 @@
 A modern and responsive **E‑commerce web application** built with **Next.js**, designed for showcasing and selling bags online with great performance and UX.  
 This project demonstrates product browsing, interactive UI and ready‑to‑expand online store features.
 
-🌐 **Live Demo:** https://bags‑ecommerce‑coral.vercel.app/
+🌐 **Live Demo:** [https://bags‑ecommerce‑coral.vercel.app/](https://bags-ecommerce-coral.vercel.app/)
 
 ---
 
